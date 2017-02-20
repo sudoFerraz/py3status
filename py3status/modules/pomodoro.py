@@ -103,6 +103,7 @@ PROGRESS_BAR_ITEMS = u"▏▎▍▌▋▊▉"
 class Py3status:
     """
     """
+    allow_urgent = True  # default for legacy behavior only
     # available configuration parameters
     display_bar = False
     format = u'{ss}'

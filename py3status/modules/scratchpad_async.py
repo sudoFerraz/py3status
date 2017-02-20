@@ -23,6 +23,7 @@ import i3ipc
 class Py3status:
     """
     """
+    allow_urgent = True  # default for legacy behavior only
     # available configuration parameters
     always_show = False
     format = u'{counter} ⌫'
