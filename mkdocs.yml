@@ -1,0 +1,15 @@
+site_name: py3status
+site_description: Documentation for py3status, an extensible i3status wrapper written in python.
+
+site_author: ultrabug
+
+repo_url: https://github.com/ultrabug/py3status
+repo_name: py3status
+
+docs_dir: doc
+
+theme: readthedocs
+
+pages:
+    - Home: index.md
+    - Info: README.md

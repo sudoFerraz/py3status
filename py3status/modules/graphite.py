@@ -45,14 +45,23 @@ Dynamic format placeholders:
 
     For example if your target is "carbon.agents.localhost-a.memUsage", you'd get
     a JSON result like this:
-        {"target": "carbon.agents.localhost-a.memUsage", "datapoints": [[19693568.0, 1463663040]]}
+        ```
+        {
+            "target": "carbon.agents.localhost-a.memUsage",
+            "datapoints": [[19693568.0, 1463663040]]
+        }
+        ```
 
     So the placeholder you could use on your "format" config is:
+        ```
         format = "{carbon.agents.localhost-a.memUsage}"
+        ```
 
     TIP: use aliases !
+        ```
         targets = "alias(carbon.agents.localhost-a.memUsage, 'local_memuse')"
         format = "local carbon mem usage: {local_memuse} bytes"
+        ```
 
 Color options:
     color_bad: threshold_bad has been exceeded
