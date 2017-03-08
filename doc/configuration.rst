@@ -1,3 +1,5 @@
+.. _using_modules:
+
 Using modules
 =============
 
@@ -37,7 +39,7 @@ displayed.
 
 For example you could insert and load the ``imap`` module like this:
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     order += "disk /home"
@@ -52,7 +54,7 @@ Configuring a py3status module
 
 Your py3status modules are configured the exact same way as i3status modules, directly from your ``i3status.conf``, like this :
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     # configure the py3status imap module
@@ -79,7 +81,7 @@ Global options:
 - ``nagbar_font``. It will be used as an argument to
     ``i3-nagbar -f``, thus setting its font.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     py3status {
@@ -104,7 +106,7 @@ name of the parameters.
 .. note::
     Obfuscation is only available for string parameters.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     # normal_parameter will be shown in log files etc as 'some value'
@@ -120,7 +122,7 @@ base64 encoded.
 
 To use an encoded string add ``:base64`` to the name of the parameter.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     # Example of obfuscated configuration
@@ -145,7 +147,7 @@ If a module does not specify colors but it is in a container, then the colors
 of the container will be used if they are set, before using ones defined in the
 general section.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     general {
@@ -178,7 +180,7 @@ defined in the config as a list of tuples. With each tuple containing a value
 and a color. The color can either be a named color eg ``good`` referring to
 ``color_good`` or a hex value.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     volume_status {
@@ -203,7 +205,7 @@ In the above example the logic would be
 
 Some modules may allow more than one threshold to be defined.  If all the thresholds are the same they can be defined as above but if you wish to specify them separately you can by giving a dict of lists.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     my_module {
@@ -232,7 +234,7 @@ through automatically or by user action (the default, on mouse scroll).
 
 This module is very powerful and allows you to save a lot of space on your bar.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     order += "group tz"
@@ -264,7 +266,7 @@ module also allows you to group several modules together, however in a frame
 all the modules are shown.  This allows you to have more than one module shown
 in a group.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     order += "group frames"
@@ -303,7 +305,7 @@ in a group.
 
 Frames can also have a toggle button to hide/show the content
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     # A frame showing times in different cities.
@@ -348,7 +350,7 @@ As an added feature and in order to get your i3bar more responsive, every
 py3status modules and i3status modules as described in the refresh command
 below.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     # reload the i3 config when I left click on the i3status time module
@@ -387,7 +389,7 @@ below.
     }
 
     # run thunar when I left click on the / disk info module
-    disk / {
+    disk "/" {
         format = "/ %free"
         on_click 1 = "exec thunar /"
     }
@@ -423,7 +425,7 @@ Since version 3.3 it is possible to use the output text of a module in the
 ``on_click`` command.  To do this ``$OUTPUT`` can be used in command and it will be
 substituted by the modules text output when the command is run.
 
-.. code-block:: none
+.. code-block:: py3status
     :caption: Example
 
     # copy module output to the clipboard using xclip

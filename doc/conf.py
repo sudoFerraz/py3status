@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#
+import re
+
+from py3status.autodoc import create_auto_documentation
+from py3status.version import version as py3_version
+
 # py3status documentation build configuration file, created by
 # sphinx-quickstart on Mon Mar  6 15:17:30 2017.
 #
@@ -51,18 +55,16 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'py3status'
-copyright = '2017, ultrabug'
-author = 'ultrabug'
+copyright = '2017, ultrabug & others'
+author = 'ultrabug & others'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-
-from py3status.version import version as py3_version
-
 # The short X.Y version.
-version = '3.5'
+version_info = [s for s in re.split('([0-9]+)', py3_version) if s.isdigit()][:2]
+version = '.'.join(version_info)
 # The full version, including alpha/beta/rc tags.
 release = py3_version
 
@@ -90,7 +92,7 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-#html_theme = 'alabaster'
+# html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -160,5 +162,11 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
+
 # This is a dirty hack used to generate the module documentation
-import py3status.autodoc
+create_auto_documentation()
+
+from py3status.lexer import Lexer
+def setup(app):
+    from sphinx.highlighting import lexers
+    lexers['py3status'] = Lexer()

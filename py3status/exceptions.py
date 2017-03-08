@@ -1,14 +1,22 @@
 class Py3Exception(Exception):
-    """ Base exception class """
+    """
+    Base exception class
+    """
 
 
 class RequestException(Py3Exception):
-    """ A url request base exception """
+    """
+    A url request base exception
+    """
 
 
 class RequestTimeout(RequestException):
-    """ A Timeout """
+    """
+    A Timeout
+    """
 
 
 class RequestURLError(RequestException):
-    """ A URL related error """
+    """
+    A URL related error
+    """

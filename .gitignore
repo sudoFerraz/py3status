@@ -4,3 +4,10 @@ dist
 *.egg-info
 .tox/
 .cache/
+
+# sphinx build system
+doc/_build
+doc/py3-constants-info.inc
+doc/py3-exceptions-info.inc
+doc/py3-methods-info.inc
+doc/modules-info.rst

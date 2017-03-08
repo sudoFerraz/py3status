@@ -1,6 +1,8 @@
 Introduction
 ============
 
+.. image:: screenshots/main.png
+
 Using py3status, you can take control of your i3bar easily by:
 
 * using one of the available :ref:`modules` shipped with py3status
@@ -76,3 +78,75 @@ Live IRC Chat
 
 Visit `#py3status <https://webchat.freenode.net/?channels=%23py3status&uio=d4>`_
 at `frenode.net <https://freenode.net>`_
+
+
+Usage
+-----
+
+In your i3 config file, simply switch from *i3status* to *py3status* in your *status_command*:
+
+.. code-block:: shell
+
+    status_command py3status
+
+Usually you have your own i3status configuration, just point to it:
+
+.. code-block:: shell
+
+    status_command py3status -c ~/.i3/i3status.conf
+
+Available modules
+^^^^^^^^^^^^^^^^^
+
+You can get a list with short descriptions of all available modules by using the CLI:
+
+.. code-block:: shell
+
+    $ py3status modules list
+
+
+To get more details about all available modules and their configuration, use:
+
+.. code-block:: shell
+
+    $ py3status modules details
+
+All modules shipped with py3status are present as the Python source files in the `py3status/modules <../py3status/modules>`_ directory.
+
+Most of them are **configurable directly from your current i3status.conf**, check them out to see all the configurable variables.
+
+Options
+^^^^^^^
+
+You can see the help of py3status by issuing ``py3status --help``:
+
+.. code-block:: shell
+
+    -h, --help            show this help message and exit
+    -b, --dbus-notify     use notify-send to send user notifications rather than
+                          i3-nagbar, requires a notification daemon eg dunst
+    -c I3STATUS_CONF, --config I3STATUS_CONF
+                          path to i3status config file
+    -d, --debug           be verbose in syslog
+    -i INCLUDE_PATHS, --include INCLUDE_PATHS
+                          include user-written modules from those directories
+                          (default ~/.i3/py3status)
+    -l LOG_FILE, --log-file LOG_FILE
+                          path to py3status log file
+    -n INTERVAL, --interval INTERVAL
+                          update interval in seconds (default 1 sec)
+    -s, --standalone      standalone mode, do not use i3status
+    -t CACHE_TIMEOUT, --timeout CACHE_TIMEOUT
+                          default injection cache timeout in seconds (default 60
+                          sec)
+    -v, --version         show py3status version and exit
+
+Control
+^^^^^^^
+
+Just like i3status, you can force an update of your i3bar by sending a SIGUSR1 signal to py3status.
+Note that this will also send a SIGUSR1 signal to i3status.
+
+.. code-block:: shell
+
+    killall -USR1 py3status

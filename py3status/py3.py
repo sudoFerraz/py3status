@@ -70,10 +70,17 @@ class Py3:
     """
 
     CACHE_FOREVER = PY3_CACHE_FOREVER
+    """
+    Special constant that when returned for ``cache_until`` will cause the
+    module to not update unless externally triggered.
+    """
 
     LOG_ERROR = PY3_LOG_ERROR
+    """Log as Error"""
     LOG_INFO = PY3_LOG_INFO
+    """Log as Informational"""
     LOG_WARNING = PY3_LOG_WARNING
+    """Log as Warning"""
 
     # Shared by all Py3 Instances
     _formatter = Formatter()
@@ -441,7 +448,7 @@ class Py3:
         The following functions can be registered
 
 
-            **content_function()**
+            ..  py:function:: content_function()
 
             Called to discover what modules a container is displaying.  This is
             used to determine when updates need passing on to the container and
@@ -454,7 +461,7 @@ class Py3:
 
                 This function should only be used by containers.
 
-            **urgent_function(module_names)**
+            ..  py:function:: urgent_function(module_names)
 
             This function will be called when one of the contents of a container
             has changed from a non-urgent to an urgent state.  It is used by the

@@ -14,6 +14,13 @@ def modules_directory():
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'modules')
 
 
+def screenshots_directory():
+    '''
+    Get the screenshots modules directory.
+    '''
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'doc', 'screenshots')
+
+
 def parse_readme():
     '''
     Crude parsing of modules/README.md
@@ -66,9 +73,17 @@ def core_module_docstrings(include_core=True, include_user=False, config=None, f
                 paths[name] = (os.path.join(include_path, file), 'user')
     for name in paths:
         path, module_type = paths[name]
+        samples = {}
         with open(path) as f:
             module = ast.parse(f.read())
-            docstring = ast.get_docstring(module)
+            raw_docstring = ast.get_docstring(module)
+            if raw_docstring is None:
+                continue
+            parts = re.split('^SAMPLE OUTPUT$', raw_docstring, flags=re.M)
+            docstring = parts[0]
+            if len(parts) > 1:
+                samples[name] = parts[1]
+
             if format == 'md':
                 docstring = [
                     d for d in _from_docstring_md(str(docstring).strip().split('\n'))
@@ -79,6 +94,20 @@ def core_module_docstrings(include_core=True, include_user=False, config=None, f
                 ]
             docstrings[name] = docstring + ['\n']
     return docstrings
+
+
+def find_screenshots(modules):
+    """
+    Find all the screenshots and match them to the module they are for
+    """
+    module_screenshots = {}
+    for file in os.listdir(screenshots_directory()):
+        if file.endswith('.png'):
+            selected = file[:-4].split('-')[0]
+            if selected not in module_screenshots:
+                module_screenshots[selected] = []
+            module_screenshots[selected].append(file)
+    return module_screenshots
 
 
 def create_readme(data):
@@ -120,6 +149,7 @@ re_from_defaults = re.compile('(\(default.*\))\s*$')
 
 # for rst
 re_lone_backtick = re.compile('(?<!`)`(?!`)')
+
 
 def _reformat_docstring(doc, format_fn, code_newline=''):
     '''
